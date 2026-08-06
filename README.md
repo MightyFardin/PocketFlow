@@ -1,55 +1,49 @@
 <div align="center">
-  <img src="public/favicon.svg" alt="Study Hub Logo" width="120" height="120">
+  <div style="background-color: #2563eb; width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+  </div>
   
-  <h1>Study Hub</h1>
+  <h1>PocketFlow</h1>
   
   <p>
-    <b>A comprehensive academic management application for students.</b><br>
-    Track attendance, calculate CGPA, manage schedules, and organize coursework.
+    <b>A minimalist, premium personal finance and expense tracker.</b><br>
+    Track incomes, manage expenses, set budgets, and achieve financial goals with a beautiful glassmorphic UI.
   </p>
-  
-  <br>
-
-  [![Build Status](https://img.shields.io/github/actions/workflow/status/MightyFardin/Study-Hub/build-apk.yml?branch=main&label=Build%20APK&style=for-the-badge)](https://github.com/MightyFardin/Study-Hub/actions)
-  [![Version](https://img.shields.io/github/package-json/v/MightyFardin/Study-Hub?style=for-the-badge&color=blue)](https://github.com/MightyFardin/Study-Hub/releases)
-  
 </div>
 
 ---
 
-### Overview
+### 🌟 Features
 
-Study Hub is built to provide a centralized dashboard for academic life. It is designed to be cross-platform, responsive, and easy to use.
+- **Transactions**: Add incomes and expenses with categories, notes, and tags.
+- **Analytics**: Beautiful Recharts-based pie charts to visualize your spending.
+- **Goals & Wishlist**: Track progress towards financial targets with visual progress bars.
+- **Security**: Built-in PIN lock system using Firebase cloud synchronization.
+- **Global Search**: Instantly find any transaction or note with the Cmd+K quick search.
+- **Fully Responsive**: Perfect mobile-first experience using TailwindCSS.
+- **Dark & Light Mode**: Gorgeous customized themes.
 
-### Features
+### 🛠️ Tech Stack
+- React (Vite)
+- TailwindCSS
+- Firebase Firestore (Real-time Cloud Database)
+- Lucide React Icons
+- Recharts
 
-- **Dashboard & Analytics** - Overview of upcoming classes, pending assignments, and attendance metrics.
-- **Timetable Management** - Weekly schedule planner with time slots and upcoming class indicators.
-- **Attendance Tracking** - Log and monitor attendance rates across all registered courses.
-- **CGPA Calculator** - Automated calculation of semester GPA and cumulative CGPA.
-- **Course Notes** - Integrated note-taking with Markdown support.
-- **Study Tools** - Built-in Pomodoro timer and interactive flashcards for exam preparation.
-- **Cross-Platform Support** - Available as a Progressive Web App (PWA) and a native Android application via Capacitor.
+### 🚀 Getting Started
 
-### Tech Stack
+1. Clone the repository
+```bash
+git clone https://github.com/MightyFardin/PocketFlow.git
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run the development server
+```bash
+npm run dev
+```
 
-- **Frontend:** React 18
-- **Styling:** Tailwind CSS
-- **Routing:** React Router DOM
-- **Icons:** Lucide React
-- **Build Tool:** Vite
-- **Mobile Environment:** Capacitor v8
-- **Backend Services:** Firebase (Authentication, Firestore, Storage)
-
-### Support the Project
-
-If you find this project helpful, consider supporting its development! You can buy me a coffee via crypto:
-
-**USDT (TRC20 - Tron Network)**
-`THZHYBhVEHSvVjGNjPoHY1kkosxR52NcBm`
-
----
-
-<div align="center">
-  <i>Developed for students.</i>
-</div>
+### 🔒 Database Architecture
+PocketFlow operates as a personal, local-first application but leverages Firebase Firestore to ensure your data is perfectly synced across all your devices in real-time, without requiring a traditional login system.
