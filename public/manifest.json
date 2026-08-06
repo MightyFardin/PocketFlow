@@ -1,0 +1,18 @@
+{
+  "short_name": "Study Hub",
+  "name": "Study Hub - Ultimate Student Companion",
+  "description": "Manage your courses, track attendance, calculate CGPA, and organize notes seamlessly with Study Hub.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#fafafa",
+  "orientation": "portrait-primary"
+}
