@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PocketFlow</string>
+    <string name="title_activity_main">PocketFlow</string>
+    <string name="package_name">com.fardin.pocketflow</string>
+    <string name="custom_url_scheme">com.fardin.pocketflow</string>
+</resources>
