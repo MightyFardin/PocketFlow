@@ -56,5 +56,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PocketFlow-app-debug
-          # Use a wildcard to ensure the APK is found even if the path changes slightly
-          path: android/app/build/outputs/apk/**/*.apk
+          path: android/app/build/outputs/apk/debug/
