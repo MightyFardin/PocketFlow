@@ -14,6 +14,9 @@ import Goals from './pages/Goals';
 import Achievements from './pages/Achievements';
 import Bills from './pages/Bills';
 import Reports from './pages/Reports';
+import Mess from './pages/Mess';
+import { MessProvider } from './context/MessContext';
+import { ConfirmationProvider } from './context/ConfirmationContext';
 
 const LockScreen = () => {
   const { unlockApp } = useFinance();
@@ -84,6 +87,7 @@ const AppContent = () => {
           <Route path="goals" element={<Goals />} />
           <Route path="achievements" element={<Achievements />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="mess" element={<Mess />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -92,9 +96,13 @@ const AppContent = () => {
 
 function App() {
   return (
-    <FinanceProvider>
-      <AppContent />
-    </FinanceProvider>
+    <ConfirmationProvider>
+      <FinanceProvider>
+        <MessProvider>
+          <AppContent />
+        </MessProvider>
+      </FinanceProvider>
+    </ConfirmationProvider>
   );
 }
 

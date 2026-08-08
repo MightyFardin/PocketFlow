@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useFinance } from '../context/FinanceContext';
+import { useMess } from '../context/MessContext';
 import { 
   Wallet, TrendingUp, TrendingDown, DollarSign, 
   Target, AlertCircle, ShoppingBag, Coffee, 
@@ -28,7 +30,11 @@ const StatCard = ({ title, amount, icon: Icon, colorClass, iconColorClass, forma
 
 const Dashboard = () => {
   const { stats, transactions, goals, formatMoney, settings } = useFinance();
+  const { getMonthlyStats } = useMess();
   const [isModalOpen, ReactSetIsModalOpen] = React.useState(false);
+
+  const currentMonthString = format(new Date(), 'yyyy-MM');
+  const messStats = getMonthlyStats(currentMonthString);
   
   // Calculate expenses by category for pie chart
   const expensesByCategory = transactions
@@ -137,7 +143,7 @@ const Dashboard = () => {
             <div className="card-minimal p-6">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">Recent Transactions</h3>
-              <button className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">View All</button>
+              <Link to="/transactions" className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">View All</Link>
             </div>
             
             <div className="space-y-4">
@@ -252,6 +258,34 @@ const Dashboard = () => {
             </div>
           </div>
           )}
+
+          {/* Mess Summary */}
+          <div className="card-minimal p-6 border border-emerald-100 dark:border-emerald-900/30">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center">
+              <ShoppingBag className="w-5 h-5 mr-2 text-emerald-500" />
+              Mess Summary ({format(new Date(), 'MMM')})
+            </h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-slate-500">Total Cost</span>
+                <span className="font-bold text-slate-900 dark:text-white">{formatMoney(messStats.total)}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-slate-500">Food Cost</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{formatMoney(messStats.foodTotal)}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-slate-500">Non-Food Cost</span>
+                <span className="font-semibold text-amber-600 dark:text-amber-400">{formatMoney(messStats.nonFoodTotal)}</span>
+              </div>
+              <div className="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-slate-500">Avg Cost / Day</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">{formatMoney(messStats.avgPerDay)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>

@@ -4,10 +4,10 @@
   "version": "1.4.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node node_modules/.bin/vite",
+    "build": "node node_modules/.bin/vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "node node_modules/.bin/vite preview"
   },
   "dependencies": {
     "@capacitor/android": "^8.4.2",

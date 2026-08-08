@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { format, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
 import { collection, onSnapshot, addDoc, deleteDoc, doc, query, orderBy, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useConfirm } from './ConfirmationContext';
 
 const FinanceContext = createContext();
 
@@ -12,6 +13,8 @@ export const FinanceProvider = ({ children }) => {
     return localStorage.getItem('pocketflow_theme') || 'light';
   });
   
+  const { confirm } = useConfirm();
+
   const [transactions, setTransactions] = useState([]);
   const [goals, setGoals] = useState([]);
   const [wishlists, setWishlists] = useState([]);
@@ -185,6 +188,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteTransaction = async (id) => {
+    const isConfirmed = await confirm('Delete Transaction', 'Are you sure you want to permanently delete this transaction?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_transactions', id));
     } catch (error) {
@@ -216,6 +221,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteGoal = async (id) => {
+    const isConfirmed = await confirm('Delete Goal', 'Are you sure you want to permanently delete this goal?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_goals', id));
     } catch (error) {
@@ -250,6 +257,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteWishlist = async (id) => {
+    const isConfirmed = await confirm('Delete Wishlist Item', 'Are you sure you want to delete this wishlist item?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_wishlists', id));
     } catch (error) {
@@ -276,6 +285,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteBudget = async (id) => {
+    const isConfirmed = await confirm('Delete Budget', 'Are you sure you want to delete this budget?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_budgets', id));
     } catch (error) {
@@ -306,6 +317,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteBill = async (id) => {
+    const isConfirmed = await confirm('Delete Bill', 'Are you sure you want to delete this bill?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_bills', id));
     } catch (error) {
@@ -341,6 +354,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteNote = async (id) => {
+    const isConfirmed = await confirm('Delete Note', 'Are you sure you want to delete this note?');
+    if (!isConfirmed) return;
     try {
       await deleteDoc(doc(db, 'pocketflow_notes', id));
     } catch (error) {
