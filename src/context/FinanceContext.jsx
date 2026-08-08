@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { format, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
 import { collection, onSnapshot, addDoc, deleteDoc, doc, query, orderBy, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -14,6 +14,7 @@ export const FinanceProvider = ({ children }) => {
   });
   
   const { confirm } = useConfirm();
+  const hasUnlocked = useRef(false);
 
   const [transactions, setTransactions] = useState([]);
   const [goals, setGoals] = useState([]);
@@ -107,7 +108,7 @@ export const FinanceProvider = ({ children }) => {
       if (docSnap.exists()) {
         const data = docSnap.data();
         setSettings(prev => ({...prev, ...data}));
-        if (data.pinCode && !sessionStorage.getItem('pf_unlocked')) {
+        if (data.pinCode && !hasUnlocked.current) {
           setIsLocked(true);
         }
       }
@@ -376,7 +377,7 @@ export const FinanceProvider = ({ children }) => {
   const unlockApp = (pin) => {
     if (pin === settings.pinCode) {
       setIsLocked(false);
-      sessionStorage.setItem('pf_unlocked', 'true');
+      hasUnlocked.current = true;
       return true;
     }
     return false;

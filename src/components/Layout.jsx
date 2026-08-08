@@ -161,6 +161,9 @@ const Layout = () => {
             <Palette className="w-5 h-5 mr-3" />
             <span className="font-medium text-sm">UI Settings</span>
           </button>
+          <div className="text-center text-xs text-slate-400 dark:text-slate-500 mt-4 font-medium">
+            PocketFlow v1.0.0
+          </div>
         </div>
       </aside>
 
@@ -193,7 +196,6 @@ const Layout = () => {
                 className="p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 rounded-full transition-colors shrink-0 z-10"
                 onClick={(e) => { 
                   e.stopPropagation(); 
-                  sessionStorage.removeItem('pf_unlocked');
                   window.location.reload(); 
                 }}
                 title="Lock Application"
